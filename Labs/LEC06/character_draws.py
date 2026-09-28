@@ -35,13 +35,13 @@ def move_rectangle():
     print("RECTANGLE")
     global x, y, rect_progress, state
     if rect_progress < 200:
-        x += 10
+        x += 5
     elif rect_progress < 400:
-        y += 10
+        y += 5
     elif rect_progress < 600:
-        x -= 10
+        x -= 5
     elif rect_progress < 800:
-        y -= 10
+        y -= 5
     else:
         rect_progress = 0.0
         global tri_step
