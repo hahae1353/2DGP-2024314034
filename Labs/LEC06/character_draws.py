@@ -27,7 +27,20 @@ def move_circle():
 
 def move_rectangle():
     print("RECTANGLE")
-    pass
+    global x, y, progress, state
+    if progress < 100:
+        x += 2
+    elif progress < 200:
+        y += 2
+    elif progress < 300:
+        x -= 2
+    elif progress < 400:
+        y -= 2
+    else:
+        progress = 0.0
+        state = 2
+        return
+    progress += 2
 
 def move_triangle():
     print("TRIANGLE")
