@@ -9,6 +9,7 @@ character = load_image('character.png')
 x, y = 400, 300
 state = 0
 angle = 0.0
+progress = 0.0
 
 def move_circle():
     print("CIRCLE")
