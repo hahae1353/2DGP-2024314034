@@ -25,21 +25,28 @@ def move_circle():
     angle += 0.1
     if angle >= 2 * math.pi:
         angle = 0.0
+        global rect_progress
+        rect_progress = 0.0
+        x, y = 300, 200
         state = 1
+        return
 
 def move_rectangle():
     print("RECTANGLE")
     global x, y, rect_progress, state
-    if rect_progress < 100:
-        x += 3
-    elif rect_progress < 200:
-        y += 3
-    elif rect_progress < 300:
-        x -= 3
+    if rect_progress < 200:
+        x += 10
     elif rect_progress < 400:
-        y -= 3
+        y += 10
+    elif rect_progress < 600:
+        x -= 10
+    elif rect_progress < 800:
+        y -= 10
     else:
         rect_progress = 0.0
+        global tri_step
+        tri_step = 0
+        x, y = 300, 400
         state = 2
         return
     
