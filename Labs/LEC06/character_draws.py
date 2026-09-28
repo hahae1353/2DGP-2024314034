@@ -44,7 +44,19 @@ def move_rectangle():
 
 def move_triangle():
     print("TRIANGLE")
-    pass
+    global x, y, progress, state
+    if progress < 100:
+        x += 2
+        y += 2
+    elif progress < 200:
+        x -= 4
+    elif progress < 300:
+        y -= 2
+    else:
+        progress = 0.0
+        state = 0
+        return
+    progress += 2
 
 while True:
     clear_canvas()
