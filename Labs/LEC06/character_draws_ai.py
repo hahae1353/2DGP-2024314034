@@ -1,4 +1,4 @@
-# 원운동 + 사각운동 단계
+# 원운동 + 사각운동 + 삼각운동 무한반복 단계
 from pico2d import *
 import math
 
@@ -11,8 +11,8 @@ circle_center_x, circle_center_y = 400, 300
 circle_radius = 120
 
 rect_progress = 0.0
-square_start_x, square_start_y = 300, 200
-square_size = 200
+tri_step = 0
+t = 0.0
 
 state = 0
 
@@ -40,11 +40,38 @@ def move_square():
         y -= 5
     else:
         rect_progress = 0.0
-        state = 0
-        x, y = 400, 300
+        state = 2
+        x, y = 400, 420
         return
 
     rect_progress += 3
+
+
+def move_triangle():
+    global x, y, tri_step, t, state
+    pA = (400, 420)
+    pB = (280, 220)
+    pC = (520, 220)
+    speed = 0.03
+
+    if tri_step == 0:
+        x = pA[0] * (1 - t) + pB[0] * t
+        y = pA[1] * (1 - t) + pB[1] * t
+    elif tri_step == 1:
+        x = pB[0] * (1 - t) + pC[0] * t
+        y = pB[1] * (1 - t) + pC[1] * t
+    elif tri_step == 2:
+        x = pC[0] * (1 - t) + pA[0] * t
+        y = pC[1] * (1 - t) + pA[1] * t
+
+    t += speed
+    if t >= 1.0:
+        t = 0.0
+        tri_step += 1
+        if tri_step > 2:
+            tri_step = 0
+            state = 0
+            x, y = 400, 300
 
 
 while True:
@@ -53,6 +80,8 @@ while True:
         move_circle()
     elif state == 1:
         move_square()
+    elif state == 2:
+        move_triangle()
 
     character.draw(x, y)
     update_canvas()
