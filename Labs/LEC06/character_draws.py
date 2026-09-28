@@ -9,7 +9,9 @@ character = load_image('character.png')
 x, y = 400, 300
 state = 0
 angle = 0.0
-progress = 0.0
+rect_progress = 0.0
+tri_step = 0
+t = 0.0
 
 def move_circle():
     print("CIRCLE")
@@ -27,36 +29,48 @@ def move_circle():
 
 def move_rectangle():
     print("RECTANGLE")
-    global x, y, progress, state
-    if progress < 100:
-        x += 2
-    elif progress < 200:
-        y += 2
-    elif progress < 300:
-        x -= 2
-    elif progress < 400:
-        y -= 2
+    global x, y, rect_progress, state
+    if rect_progress < 100:
+        x += 3
+    elif rect_progress < 200:
+        y += 3
+    elif rect_progress < 300:
+        x -= 3
+    elif rect_progress < 400:
+        y -= 3
     else:
-        progress = 0.0
+        rect_progress = 0.0
         state = 2
         return
-    progress += 2
+    
+    rect_progress += 3
 
 def move_triangle():
     print("TRIANGLE")
-    global x, y, progress, state
-    if progress < 100:
-        x += 2
-        y += 2
-    elif progress < 200:
-        x -= 4
-    elif progress < 300:
-        y -= 2
-    else:
-        progress = 0.0
-        state = 0
-        return
-    progress += 2
+    global x, y, tri_step, t, state
+    pA = (400, 420)
+    pB = (280, 220)
+    pC = (520, 220)
+
+    speed = 0.03
+
+    if tri_step == 0:
+        x = pA[0] * (1 - t) + pB[0] * t
+        y = pA[1] * (1 - t) + pB[1] * t
+    elif tri_step == 1:
+        x = pB[0] * (1 - t) + pC[0] * t
+        y = pB[1] * (1 - t) + pC[1] * t
+    elif tri_step == 2:
+        x = pC[0] * (1 - t) + pA[0] * t
+        y = pC[1] * (1 - t) + pA[1] * t
+
+    t += speed
+    if t >= 1.0:
+        t = 0.0
+        tri_step += 1
+        if tri_step > 2:
+            tri_step = 0
+            state = 0
 
 while True:
     clear_canvas()
