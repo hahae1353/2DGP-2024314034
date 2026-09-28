@@ -22,7 +22,7 @@ def move_circle():
     x = cx + radius * math.cos(angle)
     y = cy + radius * math.sin(angle)
 
-    angle += 0.5
+    angle += 0.1
     if angle >= 2 * math.pi:
         angle = 0.0
         state = 1
