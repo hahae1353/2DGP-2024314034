@@ -6,10 +6,23 @@ open_canvas(800, 600)
 
 character = load_image('character.png')
 
+x, y = 400, 300
+state = 0
+angle = 0.0
+
 def move_circle():
     print("CIRCLE")
-    
-    pass
+    global x, y, angle, state
+    cx, cy = 400, 300
+    radius = 100
+
+    x = cx + radius * math.cos(angle)
+    y = cy + radius * math.sin(angle)
+
+    angle += 0.5
+    if angle >= 2 * math.pi:
+        angle = 0.0
+        state = 1
 
 def move_rectangle():
     print("RECTANGLE")
@@ -20,13 +33,18 @@ def move_triangle():
     pass
 
 while True:
-    move_circle()
-    move_rectangle()
-    move_triangle()
+    clear_canvas()
+    if state == 0:
+        move_circle()
+    elif state == 1:
+        move_rectangle()
+    elif state == 2:
+        move_triangle()
 
-    pass
+    character.draw(x, y)
+    update_canvas()
 
-    break
+    delay(0.02)
 
 close_canvas()
 
