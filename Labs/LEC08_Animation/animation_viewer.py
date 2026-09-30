@@ -3,7 +3,7 @@ from pico2d import *
 open_canvas(800, 600)
 character = load_image('character_sheet.png')
 walking_frames = [173, 294, 413, 539, 665, 789, 909, 1035]
-running_frames = [165, 288, 417]
+running_frames = [165, 288, 417, 543, 660]
 speed_boost_running_frames = []
 stop_running_frames = []
 jump_frames = []
