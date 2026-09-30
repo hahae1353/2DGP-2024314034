@@ -4,7 +4,7 @@ open_canvas(800, 600)
 character = load_image('character_sheet.png')
 walking_frames = [173, 294, 413, 539, 665, 789, 909, 1035]
 running_frames = [165, 288, 417, 543, 660, 791, 906, 1028]
-speed_boost_running_frames = []
+speed_boost_running_frames = [165, 281, 401]
 stop_running_frames = []
 jump_frames = []
 
