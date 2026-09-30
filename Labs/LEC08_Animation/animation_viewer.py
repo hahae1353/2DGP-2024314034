@@ -6,7 +6,7 @@ walking_frames = [173, 294, 413, 539, 665, 789, 909, 1035]
 running_frames = [165, 288, 417, 543, 660, 791, 906, 1028]
 speed_boost_running_frames = [165, 281, 401, 525, 649, 778, 905, 1020]
 stop_running_frames = [171, 298, 422, 547, 671]
-jump_frames = [173, 297, 419]
+jump_frames = [173, 297, 419, 546, 661]
 
 while True:
 	for frame_lefts, bottom, width, height in (
